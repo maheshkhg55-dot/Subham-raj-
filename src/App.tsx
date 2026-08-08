@@ -7,6 +7,7 @@ import { MentorDetailModal } from './components/MenteeView/MentorDetailModal';
 import { BookingCheckoutModal } from './components/MenteeView/BookingCheckoutModal';
 import { AIMatchmakerModal } from './components/MenteeView/AIMatchmakerModal';
 import { AdminLoginModal } from './components/AdminLoginModal';
+import { CreateProfileModal } from './components/CreateProfileModal';
 import { MentorDashboard } from './components/MentorView/MentorDashboard';
 import { ChatDrawer } from './components/Messaging/ChatDrawer';
 import { AdminDashboard } from './components/AdminView/AdminDashboard';
@@ -48,6 +49,7 @@ export default function App() {
   const [isAIMatchmakerOpen, setIsAIMatchmakerOpen] = useState(false);
   const [isApplyMentorOpen, setIsApplyMentorOpen] = useState(false);
   const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false);
+  const [isCreateProfileOpen, setIsCreateProfileOpen] = useState(false);
   const [adminEmail, setAdminEmail] = useState('maheshkhg55@gmail.com');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -302,6 +304,7 @@ export default function App() {
         onOpenAIMatchmaker={() => setIsAIMatchmakerOpen(true)}
         onBecomeMentor={() => setIsApplyMentorOpen(true)}
         onOpenAdminLogin={() => setIsAdminLoginOpen(true)}
+        onOpenCreateProfile={() => setIsCreateProfileOpen(true)}
         adminEmail={adminEmail}
       />
 
@@ -528,6 +531,24 @@ export default function App() {
             setCurrentRole('admin');
             setActiveTab('admin-dashboard');
             showToast(`Logged in as Super Admin (${email})`);
+          }}
+        />
+      )}
+
+      {/* 5. Create Profile Modal (Mentee / Customer & Mentor) */}
+      {isCreateProfileOpen && (
+        <CreateProfileModal
+          onClose={() => setIsCreateProfileOpen(false)}
+          onProfileCreated={(role, data) => {
+            if (role === 'mentor') {
+              setCurrentRole('mentor');
+              setActiveTab('mentor-requests');
+              showToast(`Mentor Profile submitted for ${data.name}! Awaiting Super Admin approval.`);
+            } else {
+              setCurrentRole('mentee');
+              setActiveTab('explore');
+              showToast(`Customer Profile created for ${data.name}! Welcome to MentorPulse.`);
+            }
           }}
         />
       )}

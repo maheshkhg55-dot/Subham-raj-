@@ -24,6 +24,7 @@ interface NavbarProps {
   onOpenAIMatchmaker: () => void;
   onBecomeMentor: () => void;
   onOpenAdminLogin: () => void;
+  onOpenCreateProfile: () => void;
   adminEmail: string;
 }
 
@@ -37,6 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAIMatchmaker,
   onBecomeMentor,
   onOpenAdminLogin,
+  onOpenCreateProfile,
   adminEmail,
 }) => {
   return (
@@ -192,6 +194,16 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {unreadMessagesCount}
               </span>
             )}
+          </button>
+
+          {/* Create Profile Button */}
+          <button
+            onClick={onOpenCreateProfile}
+            className="hidden sm:flex items-center gap-1.5 rounded-xl bg-indigo-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:bg-indigo-700 transition-all"
+            id="btn-open-create-profile"
+          >
+            <PlusCircle className="h-3.5 w-3.5" />
+            <span>Create Profile</span>
           </button>
 
           {/* Become Mentor CTA */}
