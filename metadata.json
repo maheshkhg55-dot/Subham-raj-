@@ -1,0 +1,6 @@
+{
+  "name": "MentorPulse - SaaS Mentor Marketplace",
+  "description": "Premium SaaS marketplace connecting tech, business, and design mentors with mentees, featuring booking, Stripe payment integration, real-time messaging, AI matching, and admin dashboard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
